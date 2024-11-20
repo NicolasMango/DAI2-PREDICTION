@@ -24,11 +24,11 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/analytics-be:latest .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/analyticsprediction-be:latest .
 
       - name: Push the Docker image to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/analytics-be:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/analyticsprediction-be:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,16 +53,16 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           # Ensure the environment variable is set correctly
-          echo "Deploying Docker image: ${{ secrets.DOCKER_USERNAME }}/analytics-be:latest"
+          echo "Deploying Docker image: ${{ secrets.DOCKER_USERNAME }}/analyticsprediction-be:latest"
         
           # Pull the latest Docker image from Docker Hub
-          docker pull ${{ secrets.DOCKER_USERNAME }}/analytics-be:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/analyticsprediction-be:latest
           
           # Stop the existing container if it's running
-          docker stop analytics-be || true
+          docker stop analyticsprediction-be || true
           
           # Remove the existing container if it exists
-          docker rm analytics-be || true
+          docker rm analyticsprediction-be || true
           
           # Run the new container
-          docker run -d --name analytics-be -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/analytics-be:latest
+          docker run -d --name analyticsprediction-be -p 8001:8001 ${{ secrets.DOCKER_USERNAME }}/analyticsprediction-be:latest
