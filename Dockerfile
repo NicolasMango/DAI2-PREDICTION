@@ -9,6 +9,6 @@ RUN pip install -r requirements.txt
 ENV MODEL_PATH=/path/to/modelo.pkl
 ENV PREPROCESSOR_PATH=/path/to/preprocesador.pkl
 
-EXPOSE 5000
+EXPOSE 8001
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8001", "app:app"]
