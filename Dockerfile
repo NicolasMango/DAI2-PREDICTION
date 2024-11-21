@@ -6,8 +6,8 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-ENV MODEL_PATH=/path/to/modelo.pkl
-ENV PREPROCESSOR_PATH=/path/to/preprocesador.pkl
+ENV MODEL_PATH=app/models/modelo.pkl
+ENV PREPROCESSOR_PATH=app/models/preprocesador.pkl
 
 EXPOSE 8001
 
